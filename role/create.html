@@ -287,48 +287,49 @@
 
 										</section>
 										<h3>分配角色权限</h3>
-										<section>
-											<div>
-												<label class="checkbox-inline">
-													<input type="checkbox" id="inlineCheckbox1" value="option1"> 选项 1
-												</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" id="inlineCheckbox2" value="option2"> 选项 2
-												</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" id="inlineCheckbox3" value="option3"> 选项 3
-												</label>
-												<label class="radio-inline">
-													<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
-												</label>
-												<label class="radio-inline">
-													<input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
-												</label>
+										<section >
+											<div class="row" id="permission">
+												<!--<div class="col-sm-1">
+													<label class="control-label">菜单权限:</label>
+												</div>
+												<div class="col-sm-11">
+													<label class="checkbox-inline">
+														<input type="checkbox" id="inlineCheckbox1" value="option1"> option1
+													</label>
+												</div>
+										
+												<div class="col-sm-1">
+													<label class="control-label">操作权限:</label>
+												</div>
+												<div class="col-sm-11">
+													<label class="checkbox-inline">
+														<input type="checkbox" id="inlineCheckbox1" value="option1"> option1
+													</label>
+												</div>-->
 											</div>
-											<span>创建中...</span>
 										</section>
-										<h3>核对角色信息并创建</h3>
-										<section>
-											<span>创建中...</span>
-										</section>
-										<!--<h3>会员等级</h3>
+									<h3>核对角色信息并创建</h3>
+									<section>
+										<span>创建中...</span>
+									</section>
+									<!--<h3>会员等级</h3>
 					<section>
 						<h3>第四步，请根据实际情况自定义会员等级标准</h3>
 
 					</section>-->
-									</div>
-								</form>
 							</div>
-							<!-- end .pull-in-->
-
+							</form>
 						</div>
-						<!-- end card-box -->
-					</div>
-					<!-- end col -->
-				</div>
+						<!-- end .pull-in-->
 
+					</div>
+					<!-- end card-box -->
+				</div>
+				<!-- end col -->
 			</div>
-			<!-- end container -->
+
+		</div>
+		<!-- end container -->
 		</div>
 		<!-- end wrapper -->
 
@@ -559,15 +560,67 @@
 					var result = false;
 
 					if(currentIndex < newIndex && currentIndex == 0) { //第二步操作
-						alert("current:" + currentIndex + "1234");
+
 						if(!checkMessege())
 							return;
+						rname = $("#edParent").find("option:selected").text();
+
+						$.ajax({
+							url: url + "role/getPermissions",
+							data: {
+								sid: pid,
+								rname: rname
+							},
+							type: "POST",
+							dataType: 'json',
+							success: function(data) {
+//								alert(JSON.stringify(data));
+								result = JSON.parse(data);
+								if(result.status == 4) {
+									window.location.href = "../jumplogin.html";
+								}
+								if(result.status == 6) {
+									swalError("没有操作权限！");
+									return;
+								}
+								var str="<div class='col-sm-1'>"+
+											"<label class='control-label'>菜单权限:</label>"+
+										"</div>"+
+									"<div class='col-sm-11'>";
+								for(var s = 0; s < result.menus.length; s++) {
+									var stu = result.menus[s];
+									str+="<label class='checkbox-inline' style='padding-right: 20px;'>"+
+											"<input type='checkbox' id='inlineCheckbox1' value='"+stu+"'>"+stu+
+										"</label>"
+//																									alert(stu); 
+									//									str += '<option>' + stu + '</option>';
+								}
+								str+="</div>"+
+										"<div class='col-sm-1' style='margin-top: 20px;'>"+
+											"<label class='control-label'>操作权限:</label>"+
+										"</div>"+
+									"<div class='col-sm-11' style='margin-top: 20px;'>";
+								for(var s = 0; s < result.permissions.length; s++) {
+									var stu = result.permissions[s];
+									str+='<label class="checkbox-inline" style="padding-right: 20px;">'+
+											'<input type="checkbox" id="inlineCheckbox1" value="'+stu+'">'+ stu +
+										'</label>'
+//																									alert(stu); 
+									//									str += '<option>' + stu + '</option>';
+								}
+								str+="</div>";
+								$("#permission").html(str);
+							},
+							error: function(er) {
+								console.log(JSON.stringify(er));
+							}
+						});
 					}
-					if(currentIndex == 1) {
+					if(currentIndex < newIndex && currentIndex == 1) {
 						alert("2345");
 					}
 
-					if(currentIndex == 2) {
+					if(currentIndex < newIndex && currentIndex == 2) {
 						alert("3456");
 					}
 
