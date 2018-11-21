@@ -242,82 +242,80 @@
 							</p>
 
 							<div class="pull-in">
-								<form id="basic-form" action="#">
-									<div>
+								<form id="xlfrom">
+									<div id="example-vertical">
+
 										<h3>角色信息</h3>
 										<section>
-											<div class="form-group clearfix">
-												<label class="control-label " for="userName">角色名称 *</label>
-												<div class="">
-													<input class="form-control required" id="userName" name="userName" type="text">
-												</div>
-											</div>
-											<div class="form-group clearfix">
-												<label class="control-label " for="password"> Password *</label>
-												<div class="">
-													<input id="password" name="password" type="text" class="required form-control">
-
+											<div class="row">
+												<label class="col-sm-2 col-form-label">角色名称：</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="edRoleName">
 												</div>
 											</div>
 
-											<div class="form-group clearfix">
-												<label class="control-label " for="confirm">Confirm Password *</label>
-												<div class="">
-													<input id="confirm" name="confirm" type="text" class="required form-control">
+											<div class="row" style="margin-top: 20px;">
+												<label class="col-sm-2 col-form-label">角色描述：</label>
+												<div class="col-sm-10">
+													<textarea class="form-control" rows="5" id="edRoleDiscribe"></textarea>
+												</div>
+											</div>
+
+											<div class="row" style="margin-top: 20px;">
+												<label class="col-sm-2 col-form-label">机构状态</label>
+												<div class="col-sm-10">
+													<input type="text" id="edDptStatus" class="form-control" readonly="" value="正常">
+												</div>
+											</div>
+
+											<!--<div class="form-group row">
+												<label class="col-sm-2 col-form-label">Helping text</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="Helping text">
+													<span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span>
+												</div>
+											</div>-->
+
+											<div class="form-group row" style="margin-top: 20px;">
+												<label class="col-sm-2 col-form-label">父级角色：</label>
+												<div class="col-sm-9">
+													<select class="form-control" id="edParent">
+
+													</select>
 												</div>
 											</div>
 
 										</section>
-										<h3>Profile</h3>
+										<h3>分配角色权限</h3>
 										<section>
-											<div class="form-group clearfix">
-
-												<label class="control-label" for="name"> First name *</label>
-												<div class="">
-													<input id="name" name="name" type="text" class="required form-control">
-												</div>
+											<div>
+												<label class="checkbox-inline">
+													<input type="checkbox" id="inlineCheckbox1" value="option1"> 选项 1
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" id="inlineCheckbox2" value="option2"> 选项 2
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" id="inlineCheckbox3" value="option3"> 选项 3
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
+												</label>
 											</div>
-											<div class="form-group clearfix">
-												<label class="control-label " for="surname"> Last name *</label>
-												<div class="">
-													<input id="surname" name="surname" type="text" class="required form-control">
-
-												</div>
-											</div>
-
-											<div class="form-group clearfix">
-												<label class="control-label " for="email">Email *</label>
-												<div class="">
-													<input id="email" name="email" type="text" class="required email form-control">
-												</div>
-											</div>
-
-											<div class="form-group clearfix">
-												<label class="control-label " for="address">Address *</label>
-												<div class="">
-													<input id="address" name="address" type="text" class="form-control">
-												</div>
-											</div>
-
-											<div class="form-group clearfix">
-												<label class="control-label ">(*) Mandatory</label>
-											</div>
-
+											<span>创建中...</span>
 										</section>
-										<h3>Hints</h3>
+										<h3>核对角色信息并创建</h3>
 										<section>
-											<div class="form-group clearfix">
-												<div class="col-lg-12">
-													<ul class="list-unstyled w-list">
-														<li><b>First Name :</b> Jonathan </li>
-														<li><b>Last Name :</b> Smith </li>
-														<li><b>Emial:</b> jonathan@smith.com</li>
-														<li><b>Address:</b> 123 Your City, Cityname. </li>
-													</ul>
-												</div>
-											</div>
+											<span>创建中...</span>
 										</section>
-										
+										<!--<h3>会员等级</h3>
+					<section>
+						<h3>第四步，请根据实际情况自定义会员等级标准</h3>
+
+					</section>-->
 									</div>
 								</form>
 							</div>
@@ -328,69 +326,6 @@
 					</div>
 					<!-- end col -->
 				</div>
-				<!-- End row -->
-				<div class="row">
-					<div class="col-12">
-						<div class="card-box">
-							<h4 class="m-t-0 header-title" id="dptName"></h4>
-							<p class="text-muted m-b-30 font-14" id="dptDiscribe"></p>
-
-							<div class="row">
-								<label class="col-sm-2 col-form-label">角色名称：</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="edRoleName">
-								</div>
-							</div>
-
-							<div class="row" style="margin-top: 20px;">
-								<label class="col-sm-2 col-form-label">角色描述：</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" rows="5" id="edRoleDiscribe"></textarea>
-								</div>
-							</div>
-
-							<div class="row" style="margin-top: 20px;">
-								<label class="col-sm-2 col-form-label">机构状态</label>
-								<div class="col-sm-10">
-									<input type="text" id="edDptStatus" class="form-control" readonly="" value="正常">
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label class="col-sm-2 col-form-label">Helping text</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="Helping text">
-									<span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span>
-								</div>
-							</div>
-
-							<div class="form-group row" style="margin-top: 20px;">
-								<label class="col-sm-2 col-form-label">父级角色：</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="edParent">
-										<option>无</option>
-										<option>财政局</option>
-										<option>惠水县林业局</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="row text-center">
-								<div class="col-sm-5"></div>
-								<div class="col-sm-2 col-md-offset-4" style="margin-top: 50px;">
-									<button class="btn btn-block btn-success waves-effect waves-light" id="submit">提 交</button>
-								</div>
-							</div>
-							</form>
-
-						</div>
-						<!-- end card-box -->
-					</div>
-					<!-- end col -->
-				</div>
-				<!-- end row -->
 
 			</div>
 			<!-- end container -->
@@ -462,8 +397,16 @@
 						type: "POST",
 						dataType: 'json',
 						success: function(data) {
-							console.log(JSON.stringify(data));
 							result = JSON.parse(data);
+							if(result.status == 4) {
+								window.location.href = "../jumplogin.html";
+							}
+							if(result.status == 6) {
+								swalError("没有操作权限！");
+								return;
+							}
+							console.log(JSON.stringify(data));
+
 							menus = result.menu;
 						},
 						error: function(er) {
@@ -477,6 +420,36 @@
 						$("ul.navigation-menu li#" + menus[i]).show();
 					}
 				}
+
+				$.ajax({
+					url: url + "role/getChildren",
+					data: {
+						sid: pid
+					},
+					type: "POST",
+					dataType: 'json',
+					success: function(data) {
+						//						alert(JSON.stringify(data));
+						result = JSON.parse(data);
+						if(result.status == 4) {
+							window.location.href = "../jumplogin.html";
+						}
+						if(result.status == 6) {
+							swalError("没有操作权限！");
+							return;
+						}
+						var str = null;
+						for(var s = 0; s < result.children.length; s++) {
+							var stu = result.children[s];
+							//							alert(stu); 
+							str += '<option>' + stu + '</option>';
+						}
+						$("#edParent").html(str);
+					},
+					error: function(er) {
+						console.log(JSON.stringify(er));
+					}
+				});
 
 			});
 
@@ -560,6 +533,79 @@
 					//					alert(stu.departmentName);
 				}
 				sessionStorage.setItem(hid + 'departments', JSON.stringify(res));
+			}
+
+			let currentStepxl = 0;
+			// 注册引导页
+			$("#example-vertical").steps({
+				headerTag: "h3", // 指定头部对应什么HTML标签
+				bodyTag: "section", // 指定步骤内容对应的HTML标签
+				//        contentContainerTag:"div", // 指定包装所有内容的HTML标签
+				//        actionContainerTag:"div", // 指定包装分页导航的HTML标签
+				//        stepsContainerTag:"div", // 指定包装步骤内容的HTML标签
+				stepsOrientation: 0, // 指定步骤为水平--vertical（垂直） horizontal（水平）
+				transitionEffect: "slideLeft", // 步骤切换动画
+				//        autoFocus: true, // 将焦点设置为第一个向导实例，以便从一开始就启用关键导航 if true  优先级在startIndex之下
+				//					forceMoveForward: true, // 防止跳转到下一步
+				//					preloadContent: true,
+				startIndex: currentStepxl, // 通过修改这个值来改变当前步数指向，即通过索引值确定向导加载后开始步骤是哪一步
+				labels: {
+					finish: "完成", // 修改按钮得文本
+					next: "下一步", // 下一步按钮的文本
+					previous: "上一步", // 上一步按钮的文本
+					loading: "Loading ..."
+				},
+				onStepChanging: function(event, currentIndex, newIndex) { // 下一步切换时的监听
+					var result = false;
+
+					if(currentIndex < newIndex && currentIndex == 0) { //第二步操作
+						alert("current:" + currentIndex + "1234");
+						if(!checkMessege())
+							return;
+					}
+					if(currentIndex == 1) {
+						alert("2345");
+					}
+
+					if(currentIndex == 2) {
+						alert("3456");
+					}
+
+					return true;
+				},
+				//        onStepChanged: function (event, currentIndex, priorIndex) {// 下一步切换完成得监听
+				//
+				//        },
+				//        onCanceled: function (event) {// 取消按钮得监听
+				//
+				//        },
+				onFinishing: function(event, currentIndex) { // 完成时得监听
+					// form.validate().settings.ignore = ":disabled";
+					alert("完成时");
+					return true;
+				},
+				onFinished: function(event, currentIndex) { // 完成后的监听
+					//            parent.Index.judgeUserBinding();
+					//            parent.addcustomer();// 打开新增会员等级页面
+					alert("完成后");
+					parent.layer.closeAll();
+
+				}
+			});
+
+			function checkMessege() {
+				var name = $("#edRoleName").val();
+				var discription = $("#edRoleDiscribe").val();
+				var parent = $("#edParent").find("option:selected").text();
+				if(name == "") {
+					swalError("角色名不能为空");
+					return false;
+				}
+				if(discription == "") {
+					swalError("角色描述不能为空");
+					return false;
+				}
+				return true;
 			}
 		</script>
 
