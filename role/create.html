@@ -310,7 +310,20 @@
 										</section>
 									<h3>核对角色信息并创建</h3>
 									<section>
-										<span>创建中...</span>
+										<div class="row">
+											<div class="col-sm-2">
+												<p><strong>角色名称：</strong></p>
+			                                    <p><strong>角色描述：</strong></p>
+			                                    <p><strong>父级角色：</strong></p>
+			                                    <p><strong>角色权限：</strong></p>
+											</div>
+											<div class="col-sm-10">
+												<p id="cname">惠水县和平镇</p>
+			                                    <p id="cdiscription">张XX</p>
+			                                    <p id="cparent">123</p>
+			                                    <p id ="cpermission">123</p>
+											</div>
+										</div>
 									</section>
 									<!--<h3>会员等级</h3>
 					<section>
@@ -536,6 +549,7 @@
 				sessionStorage.setItem(hid + 'departments', JSON.stringify(res));
 			}
 
+			var role = new Object();
 			let currentStepxl = 0;
 			// 注册引导页
 			$("#example-vertical").steps({
@@ -551,7 +565,7 @@
 				//					preloadContent: true,
 				startIndex: currentStepxl, // 通过修改这个值来改变当前步数指向，即通过索引值确定向导加载后开始步骤是哪一步
 				labels: {
-					finish: "完成", // 修改按钮得文本
+					finish: "创  建", // 修改按钮得文本
 					next: "下一步", // 下一步按钮的文本
 					previous: "上一步", // 上一步按钮的文本
 					loading: "Loading ..."
@@ -590,7 +604,7 @@
 								for(var s = 0; s < result.menus.length; s++) {
 									var stu = result.menus[s];
 									str+="<label class='checkbox-inline' style='padding-right: 20px;'>"+
-											"<input type='checkbox' id='inlineCheckbox1' value='"+stu+"'>"+stu+
+											"<input type='checkbox' name='menu' id='inlineCheckbox1' value='"+stu+"'>"+stu+
 										"</label>"
 //																									alert(stu); 
 									//									str += '<option>' + stu + '</option>';
@@ -603,7 +617,7 @@
 								for(var s = 0; s < result.permissions.length; s++) {
 									var stu = result.permissions[s];
 									str+='<label class="checkbox-inline" style="padding-right: 20px;">'+
-											'<input type="checkbox" id="inlineCheckbox1" value="'+stu+'">'+ stu +
+											'<input type="checkbox" name="permission" id="inlineCheckbox1" value="'+stu+'">'+ stu +
 										'</label>'
 //																									alert(stu); 
 									//									str += '<option>' + stu + '</option>';
@@ -616,14 +630,22 @@
 							}
 						});
 					}
+					var cmenu='';
+					var cpermission='';
 					if(currentIndex < newIndex && currentIndex == 1) {
-						alert("2345");
+						$("input[name='menu']:checked").each(function(){cmenu+=this.value+','});
+						$("input[name='permission']:checked").each(function(){cpermission+=this.value+','});
+//						alert("2345:"+cmenu+","+cpermission);
+						$("#cname").html($("#edRoleName").val());
+						$("#cdiscription").html($("#edRoleDiscribe").val());
+						$("#cparent").html($("#edParent").find("option:selected").text());
+						$("#cpermission").html(cmenu+cpermission);
+						role.roleName = $("#edRoleName").val();
+						role.discription = $("#edRoleDiscribe").val();
+						role.parent = $("#edParent").find("option:selected").text();
+						role.menus = cmenu;
+						role.permissions = cpermission;
 					}
-
-					if(currentIndex < newIndex && currentIndex == 2) {
-						alert("3456");
-					}
-
 					return true;
 				},
 				//        onStepChanged: function (event, currentIndex, priorIndex) {// 下一步切换完成得监听
@@ -634,6 +656,40 @@
 				//        },
 				onFinishing: function(event, currentIndex) { // 完成时得监听
 					// form.validate().settings.ignore = ":disabled";
+					$.ajax({
+					url: "http://localhost:8080/icdata/role/create",
+					data: {
+						sid: pid,
+						role: JSON.stringify(role)
+					},
+					type: "POST",
+					dataType: 'json',
+					success: function(data) {
+						var result = JSON.parse(data);
+						if(result.status == 4) {
+							window.location.href = "../jumplogin.html";
+						}
+						if(result.status == 7) {
+							swalError("角色已存在！");
+							return;
+						}
+						if(result.status == 6) {
+							swalError("没有操作权限！");
+							return;
+						}
+						//							updateLocalDepartments(updepartment);
+						swal(
+							'创建成功！',
+							'你创建了一个角色！',
+							'success'
+						).then(function() {
+							window.location.href = "../role.html?hid=" + hid;
+						})
+					},
+					error: function(er) {
+						console.log(JSON.stringify(er));
+					}
+				});
 					alert("完成时");
 					return true;
 				},
