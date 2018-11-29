@@ -555,14 +555,14 @@
 			$("#example-vertical").steps({
 				headerTag: "h3", // 指定头部对应什么HTML标签
 				bodyTag: "section", // 指定步骤内容对应的HTML标签
-				//        contentContainerTag:"div", // 指定包装所有内容的HTML标签
-				//        actionContainerTag:"div", // 指定包装分页导航的HTML标签
-				//        stepsContainerTag:"div", // 指定包装步骤内容的HTML标签
+				//contentContainerTag:"div", // 指定包装所有内容的HTML标签
+				//actionContainerTag:"div", // 指定包装分页导航的HTML标签
+				//stepsContainerTag:"div", // 指定包装步骤内容的HTML标签
 				stepsOrientation: 0, // 指定步骤为水平--vertical（垂直） horizontal（水平）
 				transitionEffect: "slideLeft", // 步骤切换动画
-				//        autoFocus: true, // 将焦点设置为第一个向导实例，以便从一开始就启用关键导航 if true  优先级在startIndex之下
-				//					forceMoveForward: true, // 防止跳转到下一步
-				//					preloadContent: true,
+				//autoFocus: true, // 将焦点设置为第一个向导实例，以便从一开始就启用关键导航 if true  优先级在startIndex之下
+				//forceMoveForward: true, // 防止跳转到下一步
+				//preloadContent: true,
 				startIndex: currentStepxl, // 通过修改这个值来改变当前步数指向，即通过索引值确定向导加载后开始步骤是哪一步
 				labels: {
 					finish: "创  建", // 修改按钮得文本
@@ -644,7 +644,7 @@
 						role.discription = $("#edRoleDiscribe").val();
 						role.parent = $("#edParent").find("option:selected").text();
 						role.menus = cmenu;
-						role.permissions = cpermission;
+						role.permissions = cmenu+cpermission;
 					}
 					return true;
 				},
